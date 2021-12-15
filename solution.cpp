@@ -4,31 +4,33 @@
 
 #include "solution.h"
 
-#include <algorithm>
-
 using namespace std;
 
+/**
+ *
+ * @param numbers
+ * @param target
+ * @return
+ *
+ * Constrains:
+ * 2 <= numbers.length <= 3 * 104
+ * -1000 <= numbers[i] <= 1000
+ * numbers is sorted in non-decreasing order
+ * -1000 <= target <= 1000
+ */
 vector<int> Solution::twoSum(vector<int> &numbers, int target) {
-  vector<int> complements = numbers;
-  for (auto &c: complements) {
-    c = target - c;
-  }
-  reverse(complements.begin(), complements.end());
+  int size = numbers.size();
+  int left = 0;
+  int right = size - 1;
 
-  for (int i = 0; i < numbers.size(); ++i) {
-    const int lhs = numbers[i];
-    auto iter = lower_bound(complements.begin(), complements.end(), lhs);
-    if (complements.end() != iter) {
-      const int j = ReversedIndex(distance(complements.begin(), iter), complements.size());
-      if (j != i && *iter == lhs) {
-        return (i < j) ? vector<int>{i + 1, j + 1} : vector<int>{j + 1, i + 1};
-      }
-    }
+  // because numbers are sorted we could solve the problem using two pointers moving towards eachother
+  while (left < right) {
+    const int sum = numbers[left] + numbers[right];
+    if (sum == target) {
+      return {left + 1, right + 1};
+    } else if (sum < target) ++left; else --right;
   }
 
   return {};
 }
 
-int ReversedIndex(int index, int size) {
-  return size - 1 - index;
-}

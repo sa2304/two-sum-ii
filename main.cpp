@@ -5,12 +5,6 @@
 
 using namespace std;
 
-void testReversedIndex() {
-  assert(4 == ReversedIndex(0, 5));
-  assert(3 == ReversedIndex(1, 5));
-  assert(2 == ReversedIndex(2, 5));
-}
-
 void TestTwoSum() {
   Solution s;
   {
@@ -33,7 +27,6 @@ void TestTwoSum() {
 
 
 int main() {
-  testReversedIndex();
   TestTwoSum();
   std::cout << "Ok!" << std::endl;
   return 0;

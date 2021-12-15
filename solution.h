@@ -7,13 +7,9 @@
 
 #include <vector>
 
-int ReversedIndex(int index, int size);
-
 class Solution {
  public:
   std::vector<int> twoSum(std::vector<int>& numbers, int target);
-
-
 };
 
 #endif //TWO_SUM_II__SOLUTION_H_
